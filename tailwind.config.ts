@@ -34,7 +34,7 @@ const config: Config = {
         '64': '16rem',
       },
       animation: {
-        bounce: 'bounce 1s infinite',
+        bounce: 'bounce 1s infinite', // Add bounce animation
       },
       keyframes: {
         bounce: {
@@ -47,6 +47,9 @@ const config: Config = {
             animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
           },
         },
+      },
+      transitionDuration: {
+        400: '400ms',
       },
     },
   },

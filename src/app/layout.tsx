@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Professional Portfolio',
+  title: 'Janiru Wickramage',
   description: 'A showcase of my work and skills',
 };
 
