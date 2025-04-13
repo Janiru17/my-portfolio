@@ -37,7 +37,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-400 ease-in-out ${
-        scrolled ? 'bg-background/90 backdrop-blur-md shadow-md' : 'bg-transparent'
+        scrolled
+          ? 'bg-gray-800 dark:bg-gray-950/95 backdrop-blur-md shadow-md'
+          : 'bg-gray-900/20 dark:bg-gray-950/30 backdrop-blur-sm'
       }`}
     >
       <div className="container flex justify-between items-center py-4">
@@ -56,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-medium hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
+                className="font-medium text-gray-200 hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
                 onClick={(e) => handleLinkClick(e, link.href)}
               >
                 {link.name}
@@ -70,7 +72,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4 md:hidden">
           <ThemeToggle />
           <button
-            className="text-foreground transition-all duration-300 hover:scale-110"
+            className="text-gray-200 transition-all duration-300 hover:scale-110"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -81,7 +83,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`md:hidden bg-card transition-all duration-300 ease-in-out ${
+        className={`md:hidden bg-gray-800 dark:bg-gray-950 transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-64' : 'max-h-0'
         } overflow-hidden`}
       >
@@ -90,14 +92,14 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="font-medium hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
+              className="font-medium text-gray-200 hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
               onClick={(e) => handleLinkClick(e, link.href)}
             >
               {link.name}
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+    );
 }
