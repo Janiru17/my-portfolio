@@ -5,7 +5,18 @@ import Link from 'next/link';
 import { ExternalLink, Github } from 'lucide-react';
 import { useState } from 'react';
 
-const projects = [
+// Define Project interface
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  liveUrl: string;
+  codeUrl: string;
+  featured: boolean;
+}
+
+const projects: Project[] = [
   {
     title: 'E-Commerce Platform',
     description: 'A full-featured e-commerce platform with payment processing, user authentication, and product management.',
@@ -37,7 +48,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-background">
+    <section id="projects" className="py-20 bg-gray-900 dark:bg-gray-950">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16">
           My <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Projects</span>
@@ -53,13 +64,17 @@ export default function Projects() {
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project }: { project: Project }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`bg-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 ${project.featured ? 'border-2 border-primary/30' : ''}`}>
+    <div
+      className={`bg-gray-800 dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 ${
+        project.featured ? 'border-2 border-primary/50' : ''
+      }`}
+    >
       <div className="relative h-48">
-        {!isLoaded && <div className="absolute inset-0 bg-background-secondary animate-pulse" />}
+        {!isLoaded && <div className="absolute inset-0 bg-gray-700 animate-pulse" />}
         <Image
           src={project.image}
           alt={project.title}
@@ -75,13 +90,13 @@ function ProjectCard({ project }) {
         )}
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-text-secondary mb-4 line-clamp-2">{project.description}</p>
+        <h3 className="text-xl font-bold mb-2 text-gray-100">{project.title}</h3>
+        <p className="text-gray-200 mb-4 line-clamp-2">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, i) => (
             <span
               key={i}
-              className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded transition-all duration-300 hover:scale-110"
+              className="bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded transition-all duration-300 hover:scale-110"
             >
               {tag}
             </span>
@@ -99,7 +114,7 @@ function ProjectCard({ project }) {
           </Link>
           <Link
             href={project.codeUrl}
-            className="flex items-center text-text-secondary hover:text-text-primary font-medium transition-all duration-300 ease-in-out hover:scale-105"
+            className="flex items-center text-gray-200 hover:text-white font-medium transition-all duration-300 ease-in-out hover:scale-105"
             target="_blank"
             rel="noopener noreferrer"
           >
