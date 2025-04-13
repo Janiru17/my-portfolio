@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
@@ -25,44 +35,63 @@ export default function Navbar() {
   ];
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
+    <header
+      className={`fixed w-full z-50 transition-all duration-400 ease-in-out ${
+        scrolled ? 'bg-background/90 backdrop-blur-md shadow-md' : 'bg-transparent'
+      }`}
+    >
       <div className="container flex justify-between items-center py-4">
-        <Link href="#hero" className="text-xl font-bold gradient-text">
+        <Link
+          href="#hero"
+          className="text-xl font-bold gradient-text transition-all duration-300 hover:scale-105"
+          onClick={(e) => handleLinkClick(e, '#hero')}
+        >
           JANIRU WICKRAMAGE
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="font-medium hover:text-blue-500 transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        <div className="hidden md:flex items-center space-x-8">
+          <nav className="flex space-x-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="font-medium hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
+                onClick={(e) => handleLinkClick(e, link.href)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
 
         {/* Mobile Navigation Toggle */}
-        <button
-          className="md:hidden text-slate-900 dark:text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center space-x-4 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-foreground transition-all duration-300 hover:scale-110"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className={`md:hidden bg-white dark:bg-slate-800 transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-64' : 'max-h-0'}`}>
+      <div
+        className={`md:hidden bg-card transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-64' : 'max-h-0'
+        } overflow-hidden`}
+      >
         <div className="container py-4 flex flex-col space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="font-medium hover:text-blue-500 transition-colors"
-              onClick={() => setIsOpen(false)}
+              className="font-medium hover:text-primary transition-all duration-300 ease-in-out hover:scale-105"
+              onClick={(e) => handleLinkClick(e, link.href)}
             >
               {link.name}
             </Link>

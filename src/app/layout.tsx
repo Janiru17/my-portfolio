@@ -1,11 +1,15 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'Professional Portfolio',
+  title: 'Janiru Wickramage',
   description: 'A showcase of my work and skills',
 };
 
@@ -16,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
