@@ -2,10 +2,19 @@
 
 import { useState } from 'react';
 
-const skillCategories = [
+interface Skill {
+  name: string;
+  level: number;
+}
+
+interface SkillCategory {
+  title: string;
+  skills: Skill[];
+}
+
+const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
-    icon: '🎨',
     skills: [
       { name: 'HTML5', level: 90 },
       { name: 'CSS3', level: 85 },
@@ -18,7 +27,6 @@ const skillCategories = [
   },
   {
     title: 'Backend & Programming',
-    icon: '⚙️',
     skills: [
       { name: 'Node.js', level: 80 },
       { name: 'Express', level: 75 },
@@ -31,7 +39,6 @@ const skillCategories = [
   },
   {
     title: 'Soft Skills & Tools',
-    icon: '🛠️',
     skills: [
       { name: 'Leadership', level: 85 },
       { name: 'Communication', level: 90 },
@@ -46,7 +53,7 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-background-secondary">
+    <section id="skills" className="py-20 bg-gray-900 dark:bg-gray-950">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-16">
           My <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Skills</span>
@@ -54,7 +61,7 @@ export default function Skills() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <SkillCard key={index} category={category} delay={index * 0.2} />
+            <SkillCard key={index} category={category} />
           ))}
         </div>
       </div>
@@ -62,37 +69,27 @@ export default function Skills() {
   );
 }
 
-function SkillCard({ category, delay }) {
+function SkillCard({ category }: { category: SkillCategory }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
-      className="bg-card p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-primary/10"
+    <div
+      className="bg-gray-800 dark:bg-gray-900 p-6 rounded-xl shadow-md transition-all duration-300 hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ animationDelay: `${delay}s` }}
     >
-      <div className="flex items-center mb-6">
-        <span className="text-3xl mr-3">{category.icon}</span>
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          {category.title}
-        </h3>
-      </div>
-      
-      <div className="space-y-5">
+      <h3 className="text-xl font-bold mb-6 text-gray-100">{category.title}</h3>
+      <div className="space-y-4">
         {category.skills.map((skill, i) => (
           <div key={i}>
-            <div className="flex justify-between mb-2">
-              <span className="font-medium text-text-primary">{skill.name}</span>
-              <span className="text-sm text-text-tertiary font-medium">{skill.level}%</span>
+            <div className="flex justify-between mb-1">
+              <span className="font-medium text-gray-300">{skill.name}</span>
+              <span className="text-sm text-gray-400">{skill.level}%</span>
             </div>
-            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+            <div className="w-full bg-gray-700 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
               <div
-                className={`bg-gradient-to-r from-primary to-secondary h-2.5 rounded-full transition-all duration-700 ease-out ${isHovered ? 'w-0' : ''}`}
-                style={{ 
-                  width: isHovered ? '0%' : `${skill.level}%`,
-                  transitionDelay: isHovered ? '0s' : `${i * 0.1}s`
-                }}
+                className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-500 ease-out"
+                style={{ width: isHovered ? `${skill.level}%` : '0%' }}
               ></div>
             </div>
           </div>
