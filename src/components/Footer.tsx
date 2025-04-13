@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <Link href="#hero" className="text-2xl font-bold gradient-text">
-              Portfolio
+              JANIRU WICKRAMAGE
             </Link>
             <p className="mt-2 text-slate-400 max-w-md">
               Creating innovative web solutions with a focus on user experience and performance.
@@ -29,7 +29,7 @@ export default function Footer() {
               <Link
                 key={index}
                 href={link.href}
-                className="bg-slate-800 hover:bg-blue-600 p-3 rounded-full transition-colors"
+                className="bg-slate-800 hover:bg-primary p-3 rounded-full transition-colors"
                 aria-label={link.label}
                 target="_blank"
                 rel="noopener noreferrer"

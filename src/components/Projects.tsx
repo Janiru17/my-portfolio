@@ -31,7 +31,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-padding bg-slate-50 dark:bg-slate-900">
+    <section id="projects" className="section-padding bg-background">
       <div className="container">
         <h2 className="section-title">My <span className="gradient-text">Projects</span></h2>
         
@@ -39,7 +39,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="relative h-48">
                 <Image 
@@ -51,7 +51,7 @@ export default function Projects() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4">{project.description}</p>
+                <p className="text-text-secondary mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, i) => (
                     <span 
@@ -65,7 +65,7 @@ export default function Projects() {
                 <div className="flex justify-between">
                   <Link 
                     href={project.liveUrl} 
-                    className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                    className="flex items-center text-primary hover:text-primary-dark font-medium"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -74,7 +74,7 @@ export default function Projects() {
                   </Link>
                   <Link 
                     href={project.codeUrl} 
-                    className="flex items-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
+                    className="flex items-center text-text-secondary hover:text-text-primary font-medium"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
