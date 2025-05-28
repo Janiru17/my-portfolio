@@ -1,16 +1,19 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { ThemeProvider } from '@/contexts/ThemeContext';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'Janiru Wickramage',
-  description: 'A showcase of my work and skills',
+  title: "Janiru Wickramage",
+  description: "A showcase of my work and skills",
+  icons: {
+    icon: "/jw.png",
+  },
 };
 
 export default function RootLayout({
@@ -21,9 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
