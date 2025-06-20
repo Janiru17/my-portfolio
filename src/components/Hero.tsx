@@ -220,9 +220,16 @@ export default function Hero() {
               className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 max-w-sm sm:max-w-md md:max-w-lg mx-auto md:mx-0 text-sm sm:text-base leading-relaxed transition-colors duration-500"
               variants={itemVariants}
             >
-              I'm a Software Engineering undergraduate at the University of
-              Westminster, interning at Swivel Tech. I create fast, accessible,
-              and responsive web applications with a passion for innovation.
+              I’m an aspiring Software Engineer currently pursuing a BSc in
+              Software Engineering at the University of Westminster. Alongside
+              my studies, I’m gaining valuable industry experience as a Software
+              Engineering Intern at Swivel Tech, where I contribute to
+              real-world projects and collaborate with a dynamic development
+              team. With a strong foundation in full-stack development and test
+              automation, I’m passionate about building scalable, high-quality
+              software. I’m focused on continuous learning, clean code
+              practices, and working in agile environments to deliver meaningful
+              solutions and grow as a well-rounded engineer.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center md:justify-start"
